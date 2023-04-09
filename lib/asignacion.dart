@@ -21,9 +21,10 @@ class _asignacionState extends State<asignacion> {
   final _random = new Random();
   Color colorsito = Colors.blue;
   List<Color> list = [
+    Colors.yellow,
     Colors.red,
     Colors.green,
-    Colors.yellow,
+    Colors.grey,
     Colors.blue,
     Colors.purple,
     Colors.orange,
@@ -31,7 +32,7 @@ class _asignacionState extends State<asignacion> {
     Colors.brown
   ];
   int click = 0;
-  int i = -1;
+  int i = 0;
   String nomb = "", peso = "";
   String _chosenValue = "Rojo";
   List<Nodo> nodos = [];
@@ -819,6 +820,15 @@ class _asignacionState extends State<asignacion> {
                 });
               },
             ),
+            IconButton(
+              icon: Icon(Icons.drag_handle),
+              tooltip: 'Resolver algoritmo',
+              onPressed: () {
+                setState(() {
+                  _currentIndex = 5;
+                });
+              },
+            ),
             //limpiar la pantalla
             // IconButton(
             //   icon: Icon(Icons.clear),
@@ -914,10 +924,10 @@ class _asignacionState extends State<asignacion> {
   }
 
   getcolor() {
-    if (i >= 8) {
-      i = -1;
-    }
     i++;
+    if (i > 8) {
+      i = 1;
+    }
 
     return list[i];
   }
