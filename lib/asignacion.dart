@@ -820,6 +820,8 @@ class _asignacionState extends State<asignacion> {
                 });
               },
             ),
+            //Resolver algoritmo
+            /*
             IconButton(
               icon: Icon(Icons.drag_handle),
               tooltip: 'Resolver algoritmo',
@@ -828,7 +830,7 @@ class _asignacionState extends State<asignacion> {
                   _currentIndex = 5;
                 });
               },
-            ),
+            ),*/
             //limpiar la pantalla
             // IconButton(
             //   icon: Icon(Icons.clear),
@@ -866,6 +868,7 @@ class _asignacionState extends State<asignacion> {
       List<int> fila = List<int>.filled(nombresNodos.length, 0);
 
       // Insertar nombre del nodo en primera columna
+      //fila[0] = nombresNodos[i];
       fila[0] = i;
 
       matriz.add(fila);
@@ -913,6 +916,18 @@ class _asignacionState extends State<asignacion> {
           actions: [
             TextButton(
               onPressed: () {
+                minimizacion(matriz, context);
+              },
+              child: Text('Minimizar'),
+            ),
+            TextButton(
+              onPressed: () {
+                maximizacion(matriz, context);
+              },
+              child: Text('Maximizar'),
+            ),
+            TextButton(
+              onPressed: () {
                 Navigator.pop(context);
               },
               child: Text('Cerrar'),
@@ -931,4 +946,104 @@ class _asignacionState extends State<asignacion> {
 
     return list[i];
   }
+}
+
+void maximizacion(List<List<int>> costs, BuildContext context) {
+  List<List<int>> assignments = [];
+  List<int> availableWorkers = List.generate(costs[0].length, (i) => i);
+
+  for (int i = 0; i < costs.length; i++) {
+    int maxCost = costs[i][availableWorkers[0]];
+    int maxIndex = 0;
+
+    for (int j = 1; j < availableWorkers.length; j++) {
+      int cost = costs[i][availableWorkers[j]];
+
+      if (cost > maxCost) {
+        maxCost = cost;
+        maxIndex = j;
+      }
+    }
+
+    int worker = availableWorkers[maxIndex];
+    assignments.add([i, worker]);
+    availableWorkers.remove(worker);
+  }
+
+  List<String> assignmentStrings = assignments
+      .map((a) => 'Tarea ${a[0] + 1} asignada al trabajador ${a[1] + 1}')
+      .toList();
+
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Asignaciones por maximización'),
+        content: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: assignmentStrings.map((s) => Text(s)).toList(),
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: Text('Cerrar'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
+void minimizacion(List<List<int>> costs, BuildContext context) {
+  List<List<int>> assignments = [];
+  List<int> availableWorkers = List.generate(costs[0].length, (i) => i);
+
+  for (int i = 0; i < costs.length; i++) {
+    int minCost = costs[i][availableWorkers[0]];
+    int minIndex = 0;
+
+    for (int j = 1; j < availableWorkers.length; j++) {
+      int cost = costs[i][availableWorkers[j]];
+
+      if (cost < minCost) {
+        minCost = cost;
+        minIndex = j;
+      }
+    }
+
+    int worker = availableWorkers[minIndex];
+    assignments.add([i, worker]);
+    availableWorkers.remove(worker);
+  }
+
+  List<String> assignmentStrings = assignments
+      .map((a) => 'Tarea ${a[0] + 1} asignada al trabajador ${a[1] + 1}')
+      .toList();
+
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Asignaciones por minimización'),
+        content: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: assignmentStrings.map((s) => Text(s)).toList(),
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: Text('Cerrar'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }
