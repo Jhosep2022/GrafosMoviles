@@ -1,10 +1,6 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:collection/collection.dart';
-
 import 'figuras/figuras.dart';
 import 'models/modelos.dart';
 
@@ -58,8 +54,28 @@ class _asignacionState extends State<asignacion> {
                   enlaces = [];
                 });
               },
+              tooltip: 'Guardar',
+              icon: Icon(Icons.save, color: Colors.black)),
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  nodos = [];
+                  enlaces = [];
+                });
+              },
+              tooltip: 'Cargar',
+              icon: Icon(Icons.upload, color: Colors.black)),
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  nodos = [];
+                  enlaces = [];
+                });
+              },
+              tooltip: 'Elminar',
               icon: Icon(Icons.clear, color: Colors.black)),
           IconButton(
+            tooltip: 'Informacion',
             icon: Icon(Icons.help, color: Colors.black),
             onPressed: () {
               showDialog(
@@ -817,6 +833,13 @@ class _asignacionState extends State<asignacion> {
                     );
                   }
                 });
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.drag_handle),
+              tooltip: 'Genera Jhonson',
+              onPressed: () {
+                setState(() {});
               },
             ),
             //limpiar la pantalla

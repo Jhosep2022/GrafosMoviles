@@ -1,10 +1,6 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:collection/collection.dart';
-
 import 'figuras/figuras.dart';
 import 'models/modelos.dart';
 
@@ -45,7 +41,7 @@ class _noState extends State<no> {
       appBar: AppBar(
         backgroundColor: Colors.amber.shade700,
         centerTitle: true,
-        title: Text('Jhonson',
+        title: Text('North West',
             style: TextStyle(
                 color: Colors.black,
                 fontSize: 30,
@@ -58,8 +54,28 @@ class _noState extends State<no> {
                   enlaces = [];
                 });
               },
+              tooltip: 'Guardar',
+              icon: Icon(Icons.save, color: Colors.black)),
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  nodos = [];
+                  enlaces = [];
+                });
+              },
+              tooltip: 'Cargar',
+              icon: Icon(Icons.upload, color: Colors.black)),
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  nodos = [];
+                  enlaces = [];
+                });
+              },
+              tooltip: 'Elminar',
               icon: Icon(Icons.clear, color: Colors.black)),
           IconButton(
+            tooltip: 'Informacion',
             icon: Icon(Icons.help, color: Colors.black),
             onPressed: () {
               showDialog(
@@ -819,6 +835,14 @@ class _noState extends State<no> {
                 });
               },
             ),
+
+            IconButton(
+              icon: Icon(Icons.drag_handle),
+              tooltip: 'Genera Jhonson',
+              onPressed: () {
+                setState(() {});
+              },
+            ),
             //limpiar la pantalla
             // IconButton(
             //   icon: Icon(Icons.clear),
@@ -856,7 +880,7 @@ class _noState extends State<no> {
       List<int> fila = List<int>.filled(nombresNodos.length, 0);
 
       // Insertar nombre del nodo en primera columna
-      fila[0] = i;
+      fila[0] = int.parse(nombresNodos[i]);
 
       matriz.add(fila);
     }

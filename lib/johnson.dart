@@ -1,18 +1,17 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:collection/collection.dart';
-
 import 'figuras/figuras.dart';
 import 'models/modelos.dart';
 
+
 class johnson extends StatefulWidget {
   @override
+  // ignore: library_private_types_in_public_api
   _johnsonState createState() => _johnsonState();
 }
 
+// ignore: camel_case_types
 class _johnsonState extends State<johnson> {
   int _currentIndex = 0;
   Nodo nodoOrigen = Nodo(valor: "", x: 0, y: 0);
@@ -58,8 +57,28 @@ class _johnsonState extends State<johnson> {
                   enlaces = [];
                 });
               },
+              tooltip: 'Guardar',
+              icon: Icon(Icons.save, color: Colors.black)),
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  nodos = [];
+                  enlaces = [];
+                });
+              },
+              tooltip: 'Cargar',
+              icon: Icon(Icons.upload, color: Colors.black)),
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  nodos = [];
+                  enlaces = [];
+                });
+              },
+              tooltip: 'Elminar',
               icon: Icon(Icons.clear, color: Colors.black)),
           IconButton(
+            tooltip: 'Informacion',
             icon: Icon(Icons.help, color: Colors.black),
             onPressed: () {
               showDialog(
@@ -817,6 +836,13 @@ class _johnsonState extends State<johnson> {
                     );
                   }
                 });
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.drag_handle),
+              tooltip: 'Genera Jhonson',
+              onPressed: () {
+                setState(() {});
               },
             ),
             //limpiar la pantalla

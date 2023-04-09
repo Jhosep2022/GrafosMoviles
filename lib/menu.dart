@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'asignacion.dart';
 import 'johnson.dart';
 import 'no.dart';
@@ -10,10 +9,10 @@ class MenuLateral extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Color.fromARGB(255, 239, 152, 20),
+      backgroundColor: const Color.fromARGB(255, 239, 152, 20),
       child: ListView(
         children: [
-          UserAccountsDrawerHeader(
+          const UserAccountsDrawerHeader(
             accountName: Text('Grafos Moviles',
                 style: TextStyle(
                     fontSize: 25,
@@ -38,17 +37,17 @@ class MenuLateral extends StatelessWidget {
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (context) => Apple()));
             },
-            leading: Icon(
+            leading: const Icon(
               Icons.task,
               color: Colors.black,
             ),
           ),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.task,
               color: Colors.black,
             ),
-            title: Text(
+            title: const Text(
               'Asignacion',
               style: TextStyle(fontSize: 15),
             ),
@@ -58,11 +57,11 @@ class MenuLateral extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.task,
               color: Colors.black,
             ),
-            title: Text(
+            title: const Text(
               'Northoest',
               style: TextStyle(fontSize: 15),
             ),

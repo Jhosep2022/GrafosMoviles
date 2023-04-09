@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/home.dart';
 
-import 'home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,6 +20,5 @@ class MyApp extends StatelessWidget {
       ),
       home: HomeScreen(),
     );
-    //Hola
   }
 }
