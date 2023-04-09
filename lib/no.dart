@@ -21,9 +21,10 @@ class _noState extends State<no> {
   final _random = new Random();
   Color colorsito = Colors.blue;
   List<Color> list = [
+    Colors.yellow,
     Colors.red,
     Colors.green,
-    Colors.yellow,
+    Colors.grey,
     Colors.blue,
     Colors.purple,
     Colors.orange,
@@ -31,7 +32,7 @@ class _noState extends State<no> {
     Colors.brown
   ];
   int click = 0;
-  int i = -1;
+  int i = 0;
   String nomb = "", peso = "";
   String _chosenValue = "Rojo";
   List<Nodo> nodos = [];
@@ -45,7 +46,7 @@ class _noState extends State<no> {
       appBar: AppBar(
         backgroundColor: Colors.amber.shade700,
         centerTitle: true,
-        title: Text('Jhonson',
+        title: Text('North West',
             style: TextStyle(
                 color: Colors.black,
                 fontSize: 30,
@@ -819,6 +820,15 @@ class _noState extends State<no> {
                 });
               },
             ),
+            IconButton(
+              icon: Icon(Icons.drag_handle),
+              tooltip: 'Resolver algoritmo',
+              onPressed: () {
+                setState(() {
+                  _currentIndex = 5;
+                });
+              },
+            ),
             //limpiar la pantalla
             // IconButton(
             //   icon: Icon(Icons.clear),
@@ -914,10 +924,10 @@ class _noState extends State<no> {
   }
 
   getcolor() {
-    if (i >= 8) {
-      i = -1;
-    }
     i++;
+    if (i > 8) {
+      i = 1;
+    }
 
     return list[i];
   }
